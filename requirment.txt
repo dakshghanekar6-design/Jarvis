@@ -1,0 +1,24 @@
+os-sys
+requests
+speechrecognition
+pyttsx3
+pillow
+reportlab
+screen-brightness-control
+comtypes
+pycaw
+python-dotenv
+google-generativeai
+pygame
+groq
+openai
+opencv-python
+pollinations
+mediapipe
+playsound
+winsound ; (Windows built-in, no need to install)
+dateparser
+wikipedia
+
+write this code in terminal so all module will download once:-
+pip install -r requirements.txt
