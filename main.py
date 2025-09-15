@@ -4,7 +4,7 @@ import io
 import sys
 import time
 import json
-import glob
+import glob 
 import ctypes
 import queue
 import platform
@@ -36,22 +36,25 @@ from openai import OpenAI
 import webbrowser
 import cv2
 import pollinations
+from gtts import gTTS
+import tempfile
 import mediapipe as mp
 from playsound import playsound
 import winsound
 from datetime import datetime, timedelta
 import threading
+from RealTimeSearchEngine import RealtimeSearchEngine
 import dateparser
 import re
 import wikipedia
 
 os.environ['GLOG_minloglevel'] = '2'
 
-newsapi = "YOUR_API_HERE"
-weather_api_key = "YOUR_API_HERE"
-openai_key = "YOUR_API_HERE"
+newsapi = "new_api_key_here"
+weather_api_key = "weather_api_key_here"
+openai_key = "your_openai_api_key_here"
 MEMORY_FILE = "memory.json"
-gemini_key="YOUR_API_HERE"
+gemini_key="gemini_api_key_here"
 PDF_DIR = os.path.join(os.getcwd(), "generated_pdfs")
 ASSET_DIR = os.path.join(PDF_DIR, "assets")
 os.makedirs(PDF_DIR, exist_ok=True)
@@ -79,7 +82,6 @@ def speak(text: str):
     engine.say(text)
     engine.runAndWait()
     print("Finished speaking:", text)
-
 
 def word_to_num(word):
     numbers = {
@@ -230,6 +232,12 @@ def get_ai_response(prompt):
         print(f"Gemini failed: {e}")
 
     try:
+        model = "llama-3.3-70b-versatile"
+        response = RealtimeSearchEngine
+    except Exception as e:
+        print(f"Groq Failed: {e}")
+
+    try:
      
         if openai_client:
             response = openai_client.responses.create(
@@ -244,7 +252,7 @@ def get_ai_response(prompt):
         
         if groq_client:
             response = groq_client.chat.completions.create(
-                model="llama3-8b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}]
             )
             return response.choices[0].message.content
@@ -736,6 +744,7 @@ def process_command(command):
 
     elif command in ["hello", "hi", "hey"]:
         speak("Hello Daksh, how can I help you?")
+
 
     else:
         speak("Thinking....")
