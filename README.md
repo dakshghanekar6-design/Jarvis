@@ -1,4 +1,4 @@
-I have make a jarvis using pytho.
+I have make a jarvis using python.
 It includes function like 
 1.Image generation 
 2.Whether
